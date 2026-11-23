@@ -72,6 +72,18 @@ nvim-config/
 - **LSP 服务器（clangd 等）没打包**：那是平台相关的二进制，第一次打开 C/C++ 文件时 mason 会自动下载，或者 `:Mason` 手动装。
 - **告警**：透明背景依赖终端本身支持透明；不支持的话把 `lua/config/autocmds.lua` 里 `user_transparent_bg` 那段删掉。
 
+## 已验证的环境
+
+不是"理论上能跑"，下面这些是装完实际启动过的：
+
+| 系统 | Neovim | 结果 |
+| --- | --- | --- |
+| Windows 11（Windows PowerShell 5.1） | v0.12.3 | 37 个插件、tokyonight-moon、`:Compile` 可用、插件数量 36/34 ✓ |
+| Ubuntu 24.04（WSL2） | v0.12.6 | 同上，`stdpath('config')` / `stdpath('data')` 自动识别 |
+| Windows 字体注册 | — | 6 个字重写入 `HKCU\...\Fonts`，值为完整路径并广播 WM_FONTCHANGE |
+
+安装脚本会先向 nvim 查询 `stdpath`，所以自定义 XDG、便携版这些情况也能装对；装完会打印自检结果和插件数量核对，对不上会黄字提示。
+
 ## 授权
 
 - 配置本身：随你取用，不用署名
