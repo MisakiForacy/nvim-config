@@ -39,6 +39,27 @@ chmod +x install-unix.sh && ./install-unix.sh
 
 装完在终端里把字体设成 **Maple Mono NF CN**（Windows Terminal：设置 → 配置文件 → 外观 → 字体），图标才不会变方块。
 
+## 没有 Neovim 也能装（公司电脑 / 新机器）
+
+脚本会自己装一份便携版，不需要管理员权限：
+
+- **Windows**：下载 `nvim-win64.zip`，解压到 `%LOCALAPPDATA%\Programs\Neovim`，写进用户 PATH
+- **macOS / Linux**：下载官方 tarball，解压到 `~/.local/opt/nvim`，软链到 `~/.local/bin/nvim`
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install-windows.ps1 -Proxy http://127.0.0.1:7890
+```
+
+`-Proxy` 只在访问 GitHub 需要代理时加，公司内网直连的话去掉。
+
+**完全不能上外网**：先在能上网的机器下载 `nvim-win64.zip`（或 `nvim-linux-x86_64.tar.gz`），丢进解压目录的 `vendor/`，再整包拷过去——脚本会优先用包内的。
+
+## 装之前需要
+
+1. **Neovim ≥ 0.10**：没有就按上面那样交给脚本
+2. **git**：只有重新克隆插件时才需要，装这个包本身不需要
+3. 可选但建议：`ripgrep`（搜代码）、`fd`、`node`（部分 LSP）、`python`
+
 ## 目录
 
 ```
